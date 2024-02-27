@@ -51,13 +51,13 @@ function mapbox_render_settings_page() {
                         $selected_style = get_option('mapbox_style', 'mapbox://styles/mapbox/outdoors-v12');
                         $styles = array(
                             'mapbox://styles/mapbox/outdoors-v12' => 'Outdoors',
-							'mapbox://styles/mapbox/streets-v12' => 'Streets',
-							'mapbox://styles/mapbox/satellite-v9' => 'Satellite',
-							'mapbox://styles/mapbox/light-v11' => 'Light',
-							'mapbox://styles/mapbox/dark-v11' => 'Dark',
-							'mapbox://styles/mapbox/satellite-streets-v12' => 'Satellite Streets',
-							'mapbox://styles/mapbox/navigation-day-v1' => 'Navigation Day',
-							'mapbox://styles/mapbox/navigation-night-v1' => 'Navigation Night',
+			    'mapbox://styles/mapbox/streets-v12' => 'Streets',
+    		            'mapbox://styles/mapbox/satellite-v9' => 'Satellite',
+			    'mapbox://styles/mapbox/light-v11' => 'Light',
+			    'mapbox://styles/mapbox/dark-v11' => 'Dark',
+			    'mapbox://styles/mapbox/satellite-streets-v12' => 'Satellite Streets',
+			    'mapbox://styles/mapbox/navigation-day-v1' => 'Navigation Day',
+			    'mapbox://styles/mapbox/navigation-night-v1' => 'Navigation Night',
                         );
                         ?>
                         <select name="mapbox_style">
