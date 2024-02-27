@@ -51,13 +51,13 @@ function mapbox_render_settings_page() {
                         $selected_style = get_option('mapbox_style', 'mapbox://styles/mapbox/outdoors-v12');
                         $styles = array(
                             'mapbox://styles/mapbox/outdoors-v12' => 'Outdoors',
-			    'mapbox://styles/mapbox/streets-v12' => 'Streets',
-    		            'mapbox://styles/mapbox/satellite-v9' => 'Satellite',
-			    'mapbox://styles/mapbox/light-v11' => 'Light',
-			    'mapbox://styles/mapbox/dark-v11' => 'Dark',
-			    'mapbox://styles/mapbox/satellite-streets-v12' => 'Satellite Streets',
-			    'mapbox://styles/mapbox/navigation-day-v1' => 'Navigation Day',
-			    'mapbox://styles/mapbox/navigation-night-v1' => 'Navigation Night',
+							'mapbox://styles/mapbox/streets-v12' => 'Streets',
+							'mapbox://styles/mapbox/satellite-v9' => 'Satellite',
+							'mapbox://styles/mapbox/light-v11' => 'Light',
+							'mapbox://styles/mapbox/dark-v11' => 'Dark',
+							'mapbox://styles/mapbox/satellite-streets-v12' => 'Satellite Streets',
+							'mapbox://styles/mapbox/navigation-day-v1' => 'Navigation Day',
+							'mapbox://styles/mapbox/navigation-night-v1' => 'Navigation Night',
                         );
                         ?>
                         <select name="mapbox_style">
@@ -240,29 +240,29 @@ function mapbox_register_settings() {
         'type' => 'number',
         'default' => 0,
     ));
-	register_setting('mapbox_settings', 'mapbox_iframe_width_value', array(
-		'type' => 'number',
-		'default' => 100,
-		'sanitize_callback' => 'absint', // Usa 'absint' per numeri interi positivi
-	));
+    register_setting('mapbox_settings', 'mapbox_iframe_width_value', array(
+	'type' => 'number',
+	'default' => 100,
+	'sanitize_callback' => 'absint',
+    ));
 
-	register_setting('mapbox_settings', 'mapbox_iframe_width_units', array(
-		'type' => 'string',
-		'default' => '%',
-		'sanitize_callback' => 'sanitize_text_field',
-	));
+    register_setting('mapbox_settings', 'mapbox_iframe_width_units', array(
+	'type' => 'string',
+	'default' => '%',
+	'sanitize_callback' => 'sanitize_text_field',
+    ));
 
-	register_setting('mapbox_settings', 'mapbox_iframe_height_value', array(
-		'type' => 'number',
-		'default' => 400,
-		'sanitize_callback' => 'absint', // Usa 'absint' per numeri interi positivi
-	));
+    register_setting('mapbox_settings', 'mapbox_iframe_height_value', array(
+	'type' => 'number',
+	'default' => 400,
+	'sanitize_callback' => 'absint',
+    ));
 
-	register_setting('mapbox_settings', 'mapbox_iframe_height_units', array(
-		'type' => 'string',
-		'default' => 'px',
-		'sanitize_callback' => 'sanitize_text_field',
-	));
+    register_setting('mapbox_settings', 'mapbox_iframe_height_units', array(
+	'type' => 'string',
+	'default' => 'px',
+	'sanitize_callback' => 'sanitize_text_field',
+    ));
 
     register_setting('mapbox_settings', 'mapbox_style', array(
         'type' => 'string',
@@ -541,15 +541,15 @@ function mapbox_render_map_shortcode($atts) {
                 <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
                 <style>
                     body { margin: 0; padding: 0; }
-    				#map { position: absolute; top: 0; bottom: 0; width: ' . esc_attr($iframe_width_value) . $iframe_width_units . '; height: ' . esc_attr($iframe_height_value) . $iframe_height_units . '; }
-				</style>
+		    #map { position: absolute; top: 0; bottom: 0; width: ' . esc_attr($iframe_width_value) . $iframe_width_units . '; height: ' . esc_attr($iframe_height_value) . $iframe_height_units . '; }
+		</style>
                 <style>
                     .mapmap h2, .mapmap p {
                         font-family: Verdana;
                         text-align: center;
                     }
 
-					.mapmap h2 {
+		    .mapmap h2 {
                         font-size: 18px;
                         letter-spacing: 1px;
                         margin-top: 5px;
@@ -562,25 +562,25 @@ function mapbox_render_map_shortcode($atts) {
                     }
 
                     .mapboxgl-popup-content {
-						box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5)
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5)
                     }
                     ';
 
-					foreach ($markers as $index => $marker) {
-						$output .= '
-										#marker_' . $index . ' {
-											background-image: url("' . esc_js($marker['logo_url']) . '");
-											background-size: cover;
-											width: 50px;
-											height: 50px;
-											border-radius: 50%;
-											cursor: pointer;
-											transform: translate(-50%, -50%);
-										}
-									';
-					}
+		foreach ($markers as $index => $marker) {
+			$output .= '
+			#marker_' . $index . ' {
+				background-image: url("' . esc_js($marker['logo_url']) . '");
+				background-size: cover;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				cursor: pointer;
+				transform: translate(-50%, -50%);
+			}
+		';
+		}
 
-					$output .= '
+		$output .= '
 					
                     .mapboxgl-popup {
                         max-width: 275px;
@@ -592,17 +592,18 @@ function mapbox_render_map_shortcode($atts) {
 
                     .mapboxgl-popup-close-button {
                         font-size: 1.5rem;
-						transition: color 0.1s ease-in-out;
+			transition: color 0.1s ease-in-out;
                     }
 					
-					.mapboxgl-popup-close-button:hover {
-						color: #ff0000;
-					}
+		    .mapboxgl-popup-close-button:hover {
+			color: #ff0000;
+		    }
+      
                     .mapboxgl-popup-content {
                         background: ' . esc_js(get_option('mapbox_popup_background')) . ';
                         padding: 1px;
                     }
-
+		    
                     .mapmap {
                         background: ' . esc_js(get_option('mapbox_mapmap_background')) . ';
                         color: #333;
@@ -619,45 +620,45 @@ function mapbox_render_map_shortcode($atts) {
                         container: \'map\',
                         style: \'' . esc_js($style) . '\',
                         center: [' . esc_js($markers[0]['longitude']) . ', ' . esc_js($markers[0]['latitude']) . '],
-						pitch: ' . esc_js($pitch) . ',
-						zoom: ' . esc_js($zoom) . ',
-						bearing: ' . esc_js($bearing) . '
+			pitch: ' . esc_js($pitch) . ',
+			zoom: ' . esc_js($zoom) . ',
+			bearing: ' . esc_js($bearing) . '
                     });
 					
-					map.addControl(new mapboxgl.NavigationControl());
+			map.addControl(new mapboxgl.NavigationControl());
                     ';
 
-					foreach ($markers as $index => $marker) {
-						$output .= '
-									const coordinates_' . $index . ' = [' . esc_js($marker['longitude']) . ', ' . esc_js($marker['latitude']) . '];
-									const locationName_' . $index . ' = \'' . esc_js($marker['location_name']) . '\';
-									const street_' . $index . ' = \'' . esc_js($marker['street']) . '\';
-									const postcode_' . $index . ' = \'' . esc_js($marker['postcode']) . '\';
-									const city_' . $index . ' = \'' . esc_js($marker['city']) . '\';
-									const state_' . $index . ' = \'' . esc_js($marker['state']) . '\';
-									const country_' . $index . ' = \'' . esc_js($marker['country']) . '\';
+		foreach ($markers as $index => $marker) {
+			$output .= '
+			const coordinates_' . $index . ' = [' . esc_js($marker['longitude']) . ', ' . esc_js($marker['latitude']) . '];
+			const locationName_' . $index . ' = \'' . esc_js($marker['location_name']) . '\';
+			const street_' . $index . ' = \'' . esc_js($marker['street']) . '\';
+			const postcode_' . $index . ' = \'' . esc_js($marker['postcode']) . '\';
+			const city_' . $index . ' = \'' . esc_js($marker['city']) . '\';
+			const state_' . $index . ' = \'' . esc_js($marker['state']) . '\';
+			const country_' . $index . ' = \'' . esc_js($marker['country']) . '\';
 
-									const popupContent_' . $index . ' = "<div class=\"mapmap\">" +
-										"<h2 style=\"color: ' . esc_js(get_option('mapbox_h2_color')) . ';padding-bottom: 10px;margin-bottom: -2px;\">" + locationName_' . $index . ' + "</h2>" +
-										"<div style=\"border-top: 1px solid #2f3490;width: 30%;text-align: center;margin: 4px auto 0 auto;\"></div>" +
-										"<p><strong>" + street_' . $index . ' + "</strong>" +
-										"<br>" + postcode_' . $index . ' + " " + city_' . $index . ' + " (" + state_' . $index . ' + "), " + country_' . $index . ' + "</p>" +
-										"</div>";
+			const popupContent_' . $index . ' = "<div class=\"mapmap\">" +
+				"<h2 style=\"color: ' . esc_js(get_option('mapbox_h2_color')) . ';padding-bottom: 10px;margin-bottom: -2px;\">" + locationName_' . $index . ' + "</h2>" +
+				"<div style=\"border-top: 1px solid #2f3490;width: 30%;text-align: center;margin: 4px auto 0 auto;\"></div>" +
+				"<p><strong>" + street_' . $index . ' + "</strong>" +
+				"<br>" + postcode_' . $index . ' + " " + city_' . $index . ' + " (" + state_' . $index . ' + "), " + country_' . $index . ' + "</p>" +
+				"</div>";
 
 
-									const popup_' . $index . ' = new mapboxgl.Popup({ offset: 25 }).setHTML(popupContent_' . $index . ');
+			const popup_' . $index . ' = new mapboxgl.Popup({ offset: 25 }).setHTML(popupContent_' . $index . ');
 
-									const el_' . $index . ' = document.createElement(\'div\');
-									el_' . $index . '.id = \'marker_' . $index . '\';
+			const el_' . $index . ' = document.createElement(\'div\');
+			el_' . $index . '.id = \'marker_' . $index . '\';
 
-									new mapboxgl.Marker(el_' . $index . ')
-										.setLngLat(coordinates_' . $index . ')
-										.setPopup(popup_' . $index . ')
-										.addTo(map);
-									';
-					}
+			new mapboxgl.Marker(el_' . $index . ')
+				.setLngLat(coordinates_' . $index . ')
+				.setPopup(popup_' . $index . ')
+				.addTo(map);
+			';
+		}
 
-					$output .= '
+		$output .= '
                 </script>
             </body>
             </html>
@@ -680,8 +681,8 @@ function mapbox_map_shortcode($atts) {
 
     $map_html = mapbox_render_map_shortcode($atts);
 	return '<div style="text-align:center">
-				<iframe srcdoc="' . esc_attr($map_html) . '" style="width:' . esc_attr($width_value) . $width_units . '; height:' . esc_attr($height_value) . $height_units . '; border:none;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)"></iframe>
-			</div>';
+			<iframe srcdoc="' . esc_attr($map_html) . '" style="width:' . esc_attr($width_value) . $width_units . '; height:' . esc_attr($height_value) . $height_units . '; border:none;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)"></iframe>
+		</div>';
 }
 add_shortcode('mapbox_map', 'mapbox_map_shortcode');
 
