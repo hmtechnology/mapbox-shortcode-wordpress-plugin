@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: _Mapbox Plugin
+Plugin Name: Mapbox Shortcode Plugin
 Description: Allows embedding with shortcode a mapbox with info window popup.
 Version: 1.0
 Author: hmtechnology
